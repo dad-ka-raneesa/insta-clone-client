@@ -9,7 +9,7 @@ const Home = () => {
           <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_UzHVgFCy9VJb_yY83CBSXkTvcCkWkzxkg&usqp=CAU' />
         </div>
         <div className='card-content'>
-          <i class="material-icons">favorite</i>
+          <i className="material-icons">favorite</i>
           <h6>title</h6>
           <p>Beautiful mountains</p>
           <input type='text' placeholder='add a comment'></input>
@@ -21,7 +21,7 @@ const Home = () => {
           <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_UzHVgFCy9VJb_yY83CBSXkTvcCkWkzxkg&usqp=CAU' />
         </div>
         <div className='card-content'>
-          <i class="material-icons">favorite</i>
+          <i className="material-icons">favorite</i>
           <h6>title</h6>
           <p>Beautiful mountains</p>
           <input type='text' placeholder='add a comment'></input>
@@ -33,7 +33,7 @@ const Home = () => {
           <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_UzHVgFCy9VJb_yY83CBSXkTvcCkWkzxkg&usqp=CAU' />
         </div>
         <div className='card-content'>
-          <i class="material-icons">favorite</i>
+          <i className="material-icons">favorite</i>
           <h6>title</h6>
           <p>Beautiful mountains</p>
           <input type='text' placeholder='add a comment'></input>

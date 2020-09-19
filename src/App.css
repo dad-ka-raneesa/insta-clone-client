@@ -64,3 +64,10 @@ h2 {
 	height: max-content;
 	margin: 26px auto;
 }
+
+.create-post-card {
+	margin: 30px auto;
+	max-width: 500px;
+	padding: 20px;
+	text-align: center;
+}

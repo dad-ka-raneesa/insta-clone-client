@@ -14,7 +14,7 @@ const Signin = () => {
           type="text"
           placeholder="password"
         />
-        <button className="btn #64b5f6 blue lighten-2" >Signin</button>
+        <button className="btn #64b5f6 blue lighten-2 darken-1" >SIGNIN</button>
         <h5>
           <Link to='/signup'>Dont have an account ?</Link>
         </h5>
