@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import InputBar from '../InputBar';
-import postData from '../postData';
 
-const HandlePostData = (name, email, password, history) => {
-  const action = { type: 'SIGNUP', body: { name, email, password } };
-  postData(action, history, '/signin')
-}
-
-const Signup = () => {
+const Signup = (props) => {
   const history = useHistory();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -23,7 +17,7 @@ const Signup = () => {
         <InputBar placeholder='password' value={password} onChange={setPassword} />
         <button
           className="btn #64b5f6 blue lighten-2 darken-1"
-          onClick={() => HandlePostData(name, email, password, history)}>SIGNUP</button>
+          onClick={() => props.onSubmit(history, { name, email, password })}>SIGNUP</button>
         <h5>
           <Link to='/signin'>Already have an account ?</Link>
         </h5>
