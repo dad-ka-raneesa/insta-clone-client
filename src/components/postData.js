@@ -10,7 +10,7 @@ const checkEmail = (email) => {
 }
 
 const postData = async (action, history) => {
-  if (!checkEmail(action.body.email)) {
+  if (action.body.email && !checkEmail(action.body.email)) {
     return;
   }
   const data = await apiCall(action);

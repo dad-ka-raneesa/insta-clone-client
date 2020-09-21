@@ -6,7 +6,10 @@ const optionsForGet = () => {
 
 const optionsForPost = (body) => {
   return {
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'accept': 'application/json'
+    },
     body: JSON.stringify(body),
     method: 'POST',
   };
@@ -27,9 +30,11 @@ const apiCall = (action) => {
     case 'SIGNUP':
       return fetchReq('/signup', action.body, 'POST');
     case 'SIGNIN':
-      return fetchReq(`/signin`, action.body, 'POST');
+      return fetchReq('/signin', action.body, 'POST');
+    case 'UPLOAD_IMAGE':
+      return fetchReq('/createPost', action.body, 'POST');
     default:
-      return fetchReq('/');
+      return new Promise((resolve, reject) => reject());
   }
 };
 

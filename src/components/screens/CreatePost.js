@@ -1,22 +1,37 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import InputBar from '../InputBar';
+import postData from '../postData';
+import uploadImage from '../uploadImage';
 
 const CreatePost = () => {
+  const history = useHistory();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [image, setImage] = useState('');
+  const [url, setUrl] = useState('');
+
+  const postDetails = async () => {
+    const data = await uploadImage(image);
+    setUrl(data.url);
+    const action = { type: 'UPLOAD_IMAGE', body: { title, body, photo: url }, url: '/createPost', message: 'Created post successfully' };
+    postData(action, history);
+  }
+
   return (
     <div className='card input-field create-post-card'>
-      <input type='text' placeholder='title'></input>
-      <input type='text' placeholder='body'></input>
+      <InputBar placeholder='title' value={title} onChange={setTitle} />
+      <InputBar placeholder='body' value={body} onChange={setBody} />
       <div className="file-field input-field">
         <div className="btn #64b5f6 blue lighten-2 darken-1">
           <span>UPLOAD IMAGE</span>
-          <input type="file" />
+          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
         </div>
         <div className="file-path-wrapper">
           <input className="file-path validate" type="text" />
         </div>
       </div>
-      <button className="btn #64b5f6 blue lighten-2 darken-1" >SUBMIT POST</button>
+      <button className="btn #64b5f6 blue lighten-2 darken-1" onClick={() => postDetails()}>SUBMIT POST</button>
     </div>
   );
 }
