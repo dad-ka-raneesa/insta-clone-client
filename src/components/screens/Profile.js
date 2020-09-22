@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../../App';
+import apiCall from '../apiCall';
 
 const Profile = () => {
+  const [data, setData] = useState([]);
+  const { state, dispatch } = useContext(UserContext);
+
+  useEffect(() => {
+    const headers = { "Authorization": "Bearer " + localStorage.getItem("jwt") };
+    apiCall({ type: 'MY_POSTS', headers })
+      .then(result => {
+        setData(result.myPosts);
+      });
+  }, [])
+
   return (
     <div className='profile'>
       <div className='profile-container'>
@@ -10,7 +23,7 @@ const Profile = () => {
           />
         </div>
         <div>
-          <h4>Isabella</h4>
+          <h4>{state ? state.name : 'Loading'}</h4>
           <div className='info-tab'>
             <h6>20 Posts</h6>
             <h6>10 Followers</h6>
@@ -19,11 +32,9 @@ const Profile = () => {
         </div>
       </div>
       <div className='gallery'>
-        <img className='item' src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ2DY2WktwMebkhOn7kGhkwXoxHa4EzrU9Nag&usqp=CAU' />
-        <img className='item' src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ2DY2WktwMebkhOn7kGhkwXoxHa4EzrU9Nag&usqp=CAU' />
-        <img className='item' src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ2DY2WktwMebkhOn7kGhkwXoxHa4EzrU9Nag&usqp=CAU' />
-        <img className='item' src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ2DY2WktwMebkhOn7kGhkwXoxHa4EzrU9Nag&usqp=CAU' />
-        <img className='item' src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ2DY2WktwMebkhOn7kGhkwXoxHa4EzrU9Nag&usqp=CAU' />
+        {data.map(item => (
+          <img key={item._id} className='item' src={item.photo} />
+        ))}
       </div>
     </div>
   );

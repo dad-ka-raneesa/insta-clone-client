@@ -37,8 +37,10 @@ const apiCall = (action) => {
       return fetchReq('/signin', action.body, 'POST');
     case 'CREATE_POST':
       return fetchReq('/createPost', action.body, 'POST', action.headers);
-    case 'ALL_POST':
-      return fetchReq('/allPost', action.body, 'GET', action.headers);
+    case 'ALL_POSTS':
+      return fetchReq('/allPosts', action.body, 'GET', action.headers);
+    case 'MY_POSTS':
+      return fetchReq('/myPosts', action.body, 'GET', action.headers);
     default:
       return new Promise((resolve, reject) => reject());
   }

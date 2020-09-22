@@ -7,7 +7,7 @@ const Home = () => {
 
   useEffect(() => {
     const headers = { "Authorization": "Bearer " + localStorage.getItem("jwt") };
-    apiCall({ type: 'ALL_POST', headers })
+    apiCall({ type: 'ALL_POSTS', headers })
       .then(result => {
         setData(result.posts);
       })
