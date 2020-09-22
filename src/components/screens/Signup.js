@@ -15,9 +15,9 @@ const Signup = (props) => {
     <div className="basic-card">
       <div className="card auth-card input-field">
         <h2>Instagram</h2>
-        <InputBar placeholder='name' value={name} onChange={setName} />
-        <InputBar placeholder='email' value={email} onChange={setEmail} />
-        <InputBar placeholder='password' value={password} onChange={setPassword} />
+        <InputBar type='text' placeholder='name' value={name} onChange={setName} />
+        <InputBar type='text' placeholder='email' value={email} onChange={setEmail} />
+        <InputBar type='password' placeholder='password' value={password} onChange={setPassword} />
         <button
           className="btn #64b5f6 blue lighten-2 darken-1"
           onClick={() => handleSignup()}>SIGNUP</button>
