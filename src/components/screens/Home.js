@@ -1,44 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Post from '../Post';
+import apiCall from '../apiCall';
 
 const Home = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const headers = { "Authorization": "Bearer " + localStorage.getItem("jwt") };
+    apiCall({ type: 'ALL_POST', headers })
+      .then(result => {
+        setData(result.posts);
+      })
+  }, []);
+
   return (
     <div className='home'>
-      <div className='card home-card'>
-        <h5>Isabella</h5>
-        <div className='card-image'>
-          <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_UzHVgFCy9VJb_yY83CBSXkTvcCkWkzxkg&usqp=CAU' />
-        </div>
-        <div className='card-content'>
-          <i className="material-icons">favorite</i>
-          <h6>title</h6>
-          <p>Beautiful mountains</p>
-          <input type='text' placeholder='add a comment'></input>
-        </div>
-      </div>
-      <div className='card home-card'>
-        <h5>Isabella</h5>
-        <div className='card-image'>
-          <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_UzHVgFCy9VJb_yY83CBSXkTvcCkWkzxkg&usqp=CAU' />
-        </div>
-        <div className='card-content'>
-          <i className="material-icons">favorite</i>
-          <h6>title</h6>
-          <p>Beautiful mountains</p>
-          <input type='text' placeholder='add a comment'></input>
-        </div>
-      </div>
-      <div className='card home-card'>
-        <h5>Isabella</h5>
-        <div className='card-image'>
-          <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf_UzHVgFCy9VJb_yY83CBSXkTvcCkWkzxkg&usqp=CAU' />
-        </div>
-        <div className='card-content'>
-          <i className="material-icons">favorite</i>
-          <h6>title</h6>
-          <p>Beautiful mountains</p>
-          <input type='text' placeholder='add a comment'></input>
-        </div>
-      </div>
+      {data.map(item => (
+        <Post item={item} key={item._id} />
+      ))}
     </div>
   )
 }

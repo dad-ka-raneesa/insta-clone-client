@@ -18,7 +18,7 @@ const postData = async (action, history) => {
     M.toast({ html: data.error, classes: '#e64a19 deep-orange darken-2' });
   }
   else {
-    M.toast({ html: data.message, classes: '#388e3c green darken-2' });
+    M.toast({ html: action.data || data.message, classes: '#388e3c green darken-2' });
     history.push(action.url);
   }
 };
