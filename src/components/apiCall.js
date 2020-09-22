@@ -4,24 +4,28 @@ const optionsForGet = () => {
   };
 };
 
-const optionsForPost = (body) => {
+const optionsForPost = (body, headers) => {
+  const defaultHeaders = {
+    'Content-Type': 'application/json',
+    'accept': 'application/json'
+  };
   return {
     headers: {
-      'Content-Type': 'application/json',
-      'accept': 'application/json'
+      ...defaultHeaders,
+      ...headers
     },
     body: JSON.stringify(body),
     method: 'POST',
   };
 };
 
-const getOptions = (body, method) => {
+const getOptions = (body, method, headers) => {
   if (method === 'GET') return optionsForGet();
-  return optionsForPost(body);
+  return optionsForPost(body, headers);
 };
 
-const fetchReq = async (url, body, method = 'GET') => {
-  const res = await fetch(url, getOptions(body, method));
+const fetchReq = async (url, body, method = 'GET', headers) => {
+  const res = await fetch(url, getOptions(body, method, headers));
   return await res.json();
 };
 
@@ -31,8 +35,8 @@ const apiCall = (action) => {
       return fetchReq('/signup', action.body, 'POST');
     case 'SIGNIN':
       return fetchReq('/signin', action.body, 'POST');
-    case 'UPLOAD_IMAGE':
-      return fetchReq('/createPost', action.body, 'POST');
+    case 'CREATE_POST':
+      return fetchReq('/createPost', action.body, 'POST', action.headers);
     default:
       return new Promise((resolve, reject) => reject());
   }

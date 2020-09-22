@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import InputBar from '../InputBar';
 import postData from '../postData';
@@ -11,11 +11,17 @@ const CreatePost = () => {
   const [image, setImage] = useState('');
   const [url, setUrl] = useState('');
 
-  const postDetails = async () => {
+  useEffect(() => {
+    if (url) {
+      const headers = { "Authorization": "Bearer " + localStorage.getItem("jwt") };
+      const action = { type: 'CREATE_POST', body: { title, body, photo: url }, headers, url: '/', message: 'Created post successfully' };
+      postData(action, history);
+    }
+  }, [url])
+
+  const handleCreatePost = async () => {
     const data = await uploadImage(image);
     setUrl(data.url);
-    const action = { type: 'UPLOAD_IMAGE', body: { title, body, photo: url }, url: '/createPost', message: 'Created post successfully' };
-    postData(action, history);
   }
 
   return (
@@ -31,7 +37,7 @@ const CreatePost = () => {
           <input className="file-path validate" type="text" />
         </div>
       </div>
-      <button className="btn #64b5f6 blue lighten-2 darken-1" onClick={() => postDetails()}>SUBMIT POST</button>
+      <button className="btn #64b5f6 blue lighten-2 darken-1" onClick={() => handleCreatePost()}>SUBMIT POST</button>
     </div>
   );
 }

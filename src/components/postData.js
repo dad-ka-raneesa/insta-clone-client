@@ -9,6 +9,13 @@ const checkEmail = (email) => {
   return true;
 }
 
+const saveToken = (type, data) => {
+  if (type = 'SIGNIN') {
+    localStorage.setItem('jwt', data.token);
+    localStorage.setItem('user', JSON.stringify(data.user));
+  }
+}
+
 const postData = async (action, history) => {
   if (action.body.email && !checkEmail(action.body.email)) {
     return;
@@ -18,6 +25,7 @@ const postData = async (action, history) => {
     M.toast({ html: data.error, classes: '#e64a19 deep-orange darken-2' });
   }
   else {
+    saveToken(action.type, data);
     M.toast({ html: action.message || data.message, classes: '#388e3c green darken-2' });
     history.push(action.url);
   }

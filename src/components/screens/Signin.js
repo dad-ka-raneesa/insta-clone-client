@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import InputBar from '../InputBar';
+import postData from '../postData';
 
 const Signin = (props) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleSignin = () => postData({ type: 'SIGNIN', body: { email, password }, url: '/', message: 'Signed in successfully' }, history);
+
   return (
     <div className="basic-card">
       <div className="card auth-card input-field">
@@ -14,7 +18,7 @@ const Signin = (props) => {
         <InputBar placeholder='password' value={password} onChange={setPassword} />
         <button
           className="btn #64b5f6 blue lighten-2 darken-1"
-          onClick={() => props.onSubmit(history, { email, password })}>SIGNIN</button>
+          onClick={() => handleSignin()}>SIGNIN</button>
         <h5>
           <Link to='/signup'>Dont have an account ?</Link>
         </h5>

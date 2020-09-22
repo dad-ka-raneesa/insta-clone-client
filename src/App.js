@@ -10,8 +10,6 @@ import CreatePost from './components/screens/CreatePost';
 import postData from './components/postData';
 
 function App() {
-  const handleSignup = (history, body) => postData({ type: 'SIGNUP', body, url: '/signin' }, history);
-  const handleSignin = (history, body) => postData({ type: 'SIGNIN', body, url: '/', message: 'Signed in successfully' }, history);
 
   useEffect(() => {
     postData({ body: {} });
@@ -24,10 +22,10 @@ function App() {
         <Home />
       </Route>
       <Route path='/signin'>
-        <Signin onSubmit={handleSignin} />
+        <Signin />
       </Route>
       <Route path='/signup'>
-        <Signup onSubmit={handleSignup} />
+        <Signup />
       </Route>
       <Route path='/profile'>
         <Profile />
