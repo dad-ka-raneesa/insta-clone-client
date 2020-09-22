@@ -1,14 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import InputBar from '../InputBar';
-import postData from '../postData';
+import { UserContext } from '../../App';
+import apiCall from '../apiCall';
+import M from 'materialize-css';
 
 const Signin = (props) => {
+  const { state, dispatch } = useContext(UserContext);
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignin = () => postData({ type: 'SIGNIN', body: { email, password }, url: '/', message: 'Signed in successfully' }, history);
+  const handleSignin = async () => {
+    const action = { type: 'SIGNIN', body: { email, password } };
+    const data = await apiCall(action);
+    if (data.error) {
+      M.toast({ html: data.error, classes: '#e64a19 deep-orange darken-2' });
+    }
+    else {
+      localStorage.setItem('jwt', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      dispatch({ type: 'USER', payload: data.user });
+      M.toast({ html: 'Signed in successfully', classes: '#388e3c green darken-2' });
+      history.push('/');
+    }
+  };
 
   return (
     <div className="basic-card">

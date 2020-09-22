@@ -1,40 +1,25 @@
-import React, { useEffect } from 'react';
+import React, {createContext, useReducer } from 'react';
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
 import NavBar from './components/Navbar.js';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './components/screens/Home';
-import Signin from './components/screens/Signin';
-import Signup from './components/screens/Signup';
-import Profile from './components/screens/Profile';
-import CreatePost from './components/screens/CreatePost';
-import postData from './components/postData';
+import Routing from './components/Routing';
+import { reducer, initialState } from './reducers/userReducer';
 
-function App() {
+const UserContext = createContext();
 
-  useEffect(() => {
-    postData({ body: {} });
-  }, []);
+const App = () => {
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Route exact path='/'>
-        <Home />
-      </Route>
-      <Route path='/signin'>
-        <Signin />
-      </Route>
-      <Route path='/signup'>
-        <Signup />
-      </Route>
-      <Route path='/profile'>
-        <Profile />
-      </Route>
-      <Route path='/createPost'>
-        <CreatePost />
-      </Route>
-    </BrowserRouter>
+    <UserContext.Provider value={{ state, dispatch }}>
+      <BrowserRouter>
+        <NavBar />
+        <Routing />
+      </BrowserRouter >
+    </UserContext.Provider>
   );
 }
 
 export default App;
+export { UserContext };
