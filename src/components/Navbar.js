@@ -8,9 +8,9 @@ const NavBar = () => {
   const renderList = () => {
     if (state) {
       return [
-        <li><Link to="/profile">Profile</Link></li>,
-        <li><Link to="/createPost">CreatePost</Link></li>,
-        <li>
+        <li key='profile'><Link to="/profile">Profile</Link></li>,
+        <li key="createPost" ><Link to="/createPost">CreatePost</Link></li>,
+        <li key="logout">
           <button
             className="btn #e64a19 deep-orange darken-2"
             onClick={() => {
@@ -23,8 +23,8 @@ const NavBar = () => {
     }
     else {
       return [
-        <li><Link to="/signin">Signin</Link></li>,
-        <li><Link to="/signup">Signup</Link></li>
+        <li key="signin"><Link to="/signin">Signin</Link></li>,
+        <li key='signup'><Link to="/signup">Signup</Link></li>
       ];
     }
   }

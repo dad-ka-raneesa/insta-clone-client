@@ -45,6 +45,8 @@ const apiCall = (action) => {
       return fetchReq('/like', action.body, 'POST', action.headers);
     case 'UN_LIKE':
       return fetchReq('/unLike', action.body, 'POST', action.headers);
+    case 'COMMENT':
+      return fetchReq('/comment', action.body, 'POST', action.headers);
     default:
       return new Promise((resolve, reject) => reject());
   }

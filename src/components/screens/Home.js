@@ -28,11 +28,12 @@ const Home = () => {
 
   const likePost = (id) => postData({ type: 'LIKE', body: { postId: id } });
   const unLikePost = (id) => postData({ type: 'UN_LIKE', body: { postId: id } });
+  const makeComment = (text, id) => postData({ type: 'COMMENT', body: { text, postId: id } });
 
   return (
     <div className='home'>
       {data.map(item => (
-        <Post item={item} key={item._id} likePost={likePost} unLikePost={unLikePost} />
+        <Post item={item} key={item._id} likePost={likePost} unLikePost={unLikePost} makeComment={makeComment} />
       ))}
     </div>
   )

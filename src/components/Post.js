@@ -5,6 +5,13 @@ const Post = (props) => {
   const { item, likePost, unLikePost } = props;
   const { state, dispatch } = useContext(UserContext);
 
+  const getComments = () => {
+    console.log(item);
+    return item.comments.map((record, index) => (
+      <h6 key={record.text + index}><span style={{ fontWeight: '800', marginRight: '7px' }}>{record.postedBy.name}</span>{record.text}</h6 >
+    ))
+  }
+
   return (
     <div className='card home-card'>
       <h5>{item.postedBy.name}</h5>
@@ -18,9 +25,15 @@ const Post = (props) => {
           <i className="material-icons" onClick={() => likePost(item._id)}>thumb_up</i>
         }
         <h6>{item.likes.length} likes</h6>
-        <h6>{item.title}</h6>
+        <h6 style={{ fontWeight: '600' }}>{item.title}</h6>
         <p>{item.body}</p>
-        <input type='text' placeholder='add a comment'></input>
+        {getComments()}
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          props.makeComment(e.target[0].value, item._id);
+        }}>
+          <input type='text' placeholder='add a comment'></input>
+        </form>
       </div>
     </div >
   );
