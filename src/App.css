@@ -98,4 +98,6 @@ h2 {
 
 .home-card > .username {
 	font-weight: 700;
+	padding-left: 10px;
+	padding-top: 7px;
 }

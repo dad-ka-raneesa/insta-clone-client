@@ -9,7 +9,8 @@ const NavBar = () => {
     if (state) {
       return [
         <li key='profile'><Link to="/profile">Profile</Link></li>,
-        <li key="createPost" ><Link to="/createPost">CreatePost</Link></li>,
+        <li key="createPost" ><Link to="/createPost">Create Post</Link></li>,
+        <li key="followingPosts" ><Link to="/followingPosts">My Following Posts</Link></li>,
         <li key="logout">
           <button
             className="btn #e64a19 deep-orange darken-2"

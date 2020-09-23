@@ -59,7 +59,7 @@ const UserProfile = () => {
             </div>
             <div>
               <h4>{userProfile.user.name}</h4>
-              <h5>{userProfile.user.email}</h5>
+              <h6>{userProfile.user.email}</h6>
               <div className='info-tab'>
                 <h6>{userProfile.posts.length} Posts</h6>
                 <h6>{userProfile.user.followers.length} Followers</h6>

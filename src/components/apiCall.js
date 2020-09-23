@@ -56,6 +56,8 @@ const apiCall = (action) => {
       return fetchReq('/follow', action.body, 'POST', action.headers);
     case 'UN_FOLLOW':
       return fetchReq('/unFollow', action.body, 'POST', action.headers);
+    case 'FOLLOWING_POSTS':
+      return fetchReq('/followingPosts', action.body, 'GET', action.headers);
     default:
       return new Promise((resolve, reject) => reject());
   }

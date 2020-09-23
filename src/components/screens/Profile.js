@@ -24,6 +24,7 @@ const Profile = () => {
         </div>
         <div>
           <h4>{state ? state.name : 'Loading...'}</h4>
+          <h6>{state ? state.email : 'Loading...'}</h6>
           <div className='info-tab'>
             <h6>{data.length} Posts</h6>
             <h6>{state ? state.followers.length : 0} Followers</h6>
