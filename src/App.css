@@ -91,3 +91,7 @@ h2 {
 .thumb_btn:hover {
 	cursor: pointer;
 }
+
+.home-card > .username {
+	font-weight: 700;
+}

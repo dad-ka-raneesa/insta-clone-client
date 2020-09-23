@@ -5,6 +5,7 @@ import Signin from './screens/Signin';
 import Signup from './screens/Signup';
 import Profile from './screens/Profile';
 import CreatePost from './screens/CreatePost';
+import UserProfile from './screens/UserProfile';
 import { UserContext } from '../App.js';
 
 const Routing = () => {
@@ -36,6 +37,9 @@ const Routing = () => {
       </Route>
       <Route path='/createPost'>
         <CreatePost />
+      </Route>
+      <Route path='/userProfile/:userId'>
+        <UserProfile />
       </Route>
     </Switch>
   );

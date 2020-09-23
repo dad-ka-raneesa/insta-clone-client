@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../App';
 
 const Post = (props) => {
@@ -15,7 +16,7 @@ const Post = (props) => {
 
   return (
     <div className='card home-card'>
-      <h5>{item.postedBy.name}
+      <h5 className='username'><Link to={item.postedBy._id !== state._id ? '/userProfile/' + item.postedBy._id : '/profile'}>{item.postedBy.name}</Link>
         {item.postedBy._id === state._id &&
           <i className="material-icons delete_btn" onClick={() => deletePost(item._id)}> delete</i>}
       </h5>

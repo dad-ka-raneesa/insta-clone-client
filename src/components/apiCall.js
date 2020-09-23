@@ -50,6 +50,8 @@ const apiCall = (action) => {
       return fetchReq('/comment', action.body, 'POST', action.headers);
     case 'DELETE_POST':
       return fetchReq(`/deletePost/${action.postId}`, action.body, 'DELETE', action.headers);
+    case 'USER_PROFILE':
+      return fetchReq(`/userProfile/${action.userId}`, action.body, 'GET', action.headers);
     default:
       return new Promise((resolve, reject) => reject());
   }
