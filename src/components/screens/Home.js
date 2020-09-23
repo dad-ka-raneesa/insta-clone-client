@@ -1,4 +1,4 @@
-import React, { useState, useEffect, t } from 'react';
+import React, { useState, useEffect} from 'react';
 import Post from '../Post';
 import apiCall from '../apiCall';
 
@@ -13,9 +13,9 @@ const Home = () => {
       })
   }, []);
 
-  const postData = async ({ type, body }) => {
+  const postDetails = async (action) => {
     const headers = { "Authorization": "Bearer " + localStorage.getItem("jwt") };
-    const result = await apiCall({ type, body, headers })
+    const result = await apiCall({ ...action, headers })
     const newData = data.map(item => {
       if (item._id === result._id) {
         return result;
@@ -26,14 +26,26 @@ const Home = () => {
     setData(newData);
   }
 
-  const likePost = (id) => postData({ type: 'LIKE', body: { postId: id } });
-  const unLikePost = (id) => postData({ type: 'UN_LIKE', body: { postId: id } });
-  const makeComment = (text, id) => postData({ type: 'COMMENT', body: { text, postId: id } });
+  const likePost = (id) => postDetails({ type: 'LIKE', body: { postId: id } });
+  const unLikePost = (id) => postDetails({ type: 'UN_LIKE', body: { postId: id } });
+  const makeComment = (text, id) => postDetails({ type: 'COMMENT', body: { text, postId: id } });
+  const deletePost = async (id) => {
+    const headers = { "Authorization": "Bearer " + localStorage.getItem("jwt") };
+    const result = await apiCall({ type: 'DELETE_POST', postId: id, headers });
+    const newData = data.filter(item => {
+      return item._id !== result._id;
+    })
+    setData(newData);
+  }
 
   return (
     <div className='home'>
       {data.map(item => (
-        <Post item={item} key={item._id} likePost={likePost} unLikePost={unLikePost} makeComment={makeComment} />
+        <Post item={item} key={item._id}
+          likePost={likePost}
+          unLikePost={unLikePost}
+          makeComment={makeComment}
+          deletePost={deletePost} />
       ))}
     </div>
   )

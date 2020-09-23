@@ -26,8 +26,8 @@ const CreatePost = () => {
 
   return (
     <div className='card input-field create-post-card'>
-      <InputBar placeholder='title' value={title} onChange={setTitle} />
-      <InputBar placeholder='body' value={body} onChange={setBody} />
+      <InputBar type='text' placeholder='title' value={title} onChange={setTitle} />
+      <InputBar type='text' placeholder='body' value={body} onChange={setBody} />
       <div className="file-field input-field">
         <div className="btn #64b5f6 blue lighten-2 darken-1">
           <span>UPLOAD IMAGE</span>

@@ -72,3 +72,22 @@ h2 {
 	padding: 20px;
 	text-align: center;
 }
+
+.postedBy {
+	font-weight: 600;
+	margin-right: 7px;
+}
+
+.delete_btn {
+	float: right;
+}
+
+.favorite {
+	color: red;
+}
+
+.delete_btn:hover,
+.favorite:hover,
+.thumb_btn:hover {
+	cursor: pointer;
+}

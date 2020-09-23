@@ -1,4 +1,4 @@
-const optionsForGet = (headers) => {
+const optionsForGet = (headers, method) => {
   const defaultHeaders = {
     'Content-Type': 'application/json',
   };
@@ -7,6 +7,7 @@ const optionsForGet = (headers) => {
       ...defaultHeaders,
       ...headers
     },
+    method
   };
 };
 
@@ -20,7 +21,7 @@ const optionsForPost = (body, headers) => {
 };
 
 const getOptions = (body, method, headers) => {
-  if (method === 'GET') return optionsForGet(headers);
+  if (method === 'GET' || method === 'DELETE') return optionsForGet(headers, method);
   return optionsForPost(body, headers);
 };
 
@@ -47,6 +48,8 @@ const apiCall = (action) => {
       return fetchReq('/unLike', action.body, 'POST', action.headers);
     case 'COMMENT':
       return fetchReq('/comment', action.body, 'POST', action.headers);
+    case 'DELETE_POST':
+      return fetchReq(`/deletePost/${action.postId}`, action.body, 'DELETE', action.headers);
     default:
       return new Promise((resolve, reject) => reject());
   }
