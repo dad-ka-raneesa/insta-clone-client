@@ -26,8 +26,8 @@ const Profile = () => {
           <h4>{state ? state.name : 'Loading...'}</h4>
           <div className='info-tab'>
             <h6>{data.length} Posts</h6>
-            <h6>10 Followers</h6>
-            <h6>5 Following</h6>
+            <h6>{state ? state.followers.length : 0} Followers</h6>
+            <h6>{state ? state.following.length : 0} Following</h6>
           </div>
         </div>
       </div>

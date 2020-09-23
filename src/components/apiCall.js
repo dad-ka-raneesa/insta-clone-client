@@ -52,6 +52,10 @@ const apiCall = (action) => {
       return fetchReq(`/deletePost/${action.postId}`, action.body, 'DELETE', action.headers);
     case 'USER_PROFILE':
       return fetchReq(`/userProfile/${action.userId}`, action.body, 'GET', action.headers);
+    case 'FOLLOW':
+      return fetchReq('/follow', action.body, 'POST', action.headers);
+    case 'UN_FOLLOW':
+      return fetchReq('/unFollow', action.body, 'POST', action.headers);
     default:
       return new Promise((resolve, reject) => reject());
   }
