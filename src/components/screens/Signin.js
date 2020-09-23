@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import InputBar from '../InputBar';
 import { UserContext } from '../../App';
+import InputBar from '../InputBar';
+import Button from '../Button';
 import apiCall from '../apiCall';
 import M from 'materialize-css';
 
@@ -32,9 +33,7 @@ const Signin = (props) => {
         <h2>Instagram</h2>
         <InputBar type='text' placeholder='email' value={email} onChange={setEmail} />
         <InputBar type='password' placeholder='password' value={password} onChange={setPassword} />
-        <button
-          className="btn #64b5f6 blue lighten-2 darken-1"
-          onClick={() => handleSignin()}>SIGNIN</button>
+        <Button text="SIGNIN" onClick={handleSignin} />
         <h5>
           <Link to='/signup'>Dont have an account ?</Link>
         </h5>

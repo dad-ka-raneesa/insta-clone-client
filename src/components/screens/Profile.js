@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../App';
+import Gallery from '../Gallery';
 import apiCall from '../apiCall';
 
 const Profile = () => {
@@ -32,11 +33,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className='gallery'>
-        {data.map(item => (
-          <img key={item._id} className='item' src={item.photo} alt='Loading' />
-        ))}
-      </div>
+      <Gallery posts={data} />
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
+import Gallery from '../Gallery';
+import Button from '../Button';
 import apiCall from '../apiCall';
 
 const UserProfile = () => {
@@ -65,21 +67,10 @@ const UserProfile = () => {
                 <h6>{userProfile.user.followers.length} Followers</h6>
                 <h6>{userProfile.user.following.length} Following</h6>
               </div>
-              {showFollow ?
-                <button
-                  className="btn #64b5f6 blue lighten-2 darken-1"
-                  onClick={() => followUser()}>FOLLOW</button> :
-                <button
-                  className="btn #64b5f6 blue lighten-2 darken-1"
-                  onClick={() => unFollowUser()}>UN FOLLOW</button>
-              }
+              {showFollow ? <Button text="FOLLOW" onClick={followUser} /> : <Button text="UN FOLLOW" onClick={unFollowUser} />}
             </div>
           </div>
-          <div className='gallery'>
-            {userProfile.posts.map(item => (
-              <img key={item._id} className='item' src={item.photo} alt='Loading' />
-            ))}
-          </div>
+          <Gallery posts={userProfile.posts} />
         </div>
         : <h2>Loading...</h2>
       }

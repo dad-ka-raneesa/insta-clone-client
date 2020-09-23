@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import InputBar from '../InputBar';
+import Button from '../Button';
 import postData from '../postData';
 
 const Signup = (props) => {
@@ -18,9 +19,7 @@ const Signup = (props) => {
         <InputBar type='text' placeholder='name' value={name} onChange={setName} />
         <InputBar type='text' placeholder='email' value={email} onChange={setEmail} />
         <InputBar type='password' placeholder='password' value={password} onChange={setPassword} />
-        <button
-          className="btn #64b5f6 blue lighten-2 darken-1"
-          onClick={() => handleSignup()}>SIGNUP</button>
+        <Button text="SIGNUP" onClick={handleSignup} />
         <h5>
           <Link to='/signin'>Already have an account ?</Link>
         </h5>

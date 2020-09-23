@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import InputBar from '../InputBar';
 import postData from '../postData';
 import uploadImage from '../uploadImage';
+import Button from '../Button';
 
 const CreatePost = () => {
   const history = useHistory();
@@ -37,7 +38,7 @@ const CreatePost = () => {
           <input className="file-path validate" type="text" />
         </div>
       </div>
-      <button className="btn #64b5f6 blue lighten-2 darken-1" onClick={() => handleCreatePost()}>SUBMIT POST</button>
+      <Button text="SUBMIT POST" onClick={handleCreatePost} />
     </div>
   );
 }
