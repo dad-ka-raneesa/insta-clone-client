@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import InputBar from '../InputBar';
 import postData from '../postData';
-import uploadImage from '../uploadImage';
+import ImageUpload from '../ImageUpload';
+import uploadImage from '../uploadPic';
 import Button from '../Button';
 
 const CreatePost = () => {
@@ -29,15 +30,7 @@ const CreatePost = () => {
     <div className='card input-field create-post-card'>
       <InputBar type='text' placeholder='title' value={title} onChange={setTitle} />
       <InputBar type='text' placeholder='body' value={body} onChange={setBody} />
-      <div className="file-field input-field">
-        <div className="btn #64b5f6 blue lighten-2 darken-1">
-          <span>UPLOAD IMAGE</span>
-          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-        </div>
-        <div className="file-path-wrapper">
-          <input className="file-path validate" type="text" />
-        </div>
-      </div>
+      <ImageUpload text='UPLOAD IMAGE' onChange={setImage} />
       <Button text="SUBMIT POST" onClick={handleCreatePost} />
     </div>
   );

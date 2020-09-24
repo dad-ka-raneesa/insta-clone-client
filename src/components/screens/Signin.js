@@ -15,6 +15,7 @@ const Signin = (props) => {
   const handleSignin = async () => {
     const action = { type: 'SIGNIN', body: { email, password } };
     const data = await apiCall(action);
+    
     if (data.error) {
       M.toast({ html: data.error, classes: '#e64a19 deep-orange darken-2' });
     }

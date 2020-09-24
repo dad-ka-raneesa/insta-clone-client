@@ -5,13 +5,23 @@ import { UserContext } from '../App.js';
 const NavBar = () => {
   const history = useHistory();
   const { state, dispatch } = useContext(UserContext);
-  const renderList = () => {
-    if (state) {
-      return [
-        <li key='profile'><Link to="/profile">Profile</Link></li>,
-        <li key="createPost" ><Link to="/createPost">Create Post</Link></li>,
-        <li key="followingPosts" ><Link to="/followingPosts">My Following Posts</Link></li>,
-        <li key="logout">
+
+  const homeBarBeforeLogin = () => {
+    return (
+      <ul id="nav-mobile" className="right">
+        <li><Link to="/signin">Signin</Link></li>,
+        <li><Link to="/signup">Signup</Link></li>
+      </ul>
+    );
+  }
+
+  const homeBarAfterLogin = () => {
+    return (
+      <ul id="nav-mobile" className="right">
+        <li><Link to="/profile">Profile</Link></li>,
+        <li><Link to="/createPost">Create Post</Link></li>,
+        <li><Link to="/followingPosts">My Following Posts</Link></li>,
+        <li>
           <button
             className="btn #e64a19 deep-orange darken-2"
             onClick={() => {
@@ -20,22 +30,15 @@ const NavBar = () => {
               history.push('/signin');
             }}>LOGOUT</button>
         </li>
-      ];
-    }
-    else {
-      return [
-        <li key="signin"><Link to="/signin">Signin</Link></li>,
-        <li key='signup'><Link to="/signup">Signup</Link></li>
-      ];
-    }
+      </ul>
+    );
   }
+
   return (
     <nav>
       <div className="nav-wrapper white">
         <Link to={state ? '/' : '/signin'} className="brand-logo left">Instagram</Link>
-        <ul id="nav-mobile" className="right">
-          {renderList()}
-        </ul>
+        {state ? homeBarAfterLogin() : homeBarBeforeLogin()}
       </div>
     </nav>
   );

@@ -3,13 +3,14 @@ import { useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
 import Gallery from '../Gallery';
 import Button from '../Button';
+import ProfileDetails from '../ProfileDetails';
 import apiCall from '../apiCall';
 
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState(null);
-  const [showFollow, setShowFollow] = useState(true);
   const { state, dispatch } = useContext(UserContext);
   const { userId } = useParams();
+  const [showFollow, setShowFollow] = useState(state ? !state.following.includes(userId) : true);
 
   useEffect(() => {
     const headers = { "Authorization": "Bearer " + localStorage.getItem("jwt") };
@@ -55,18 +56,10 @@ const UserProfile = () => {
         <div className='profile'>
           <div className='profile-container'>
             <div>
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ2DY2WktwMebkhOn7kGhkwXoxHa4EzrU9Nag&usqp=CAU"
-              />
+              <img src={userProfile.user.image} alt='profile' />
             </div>
             <div>
-              <h4>{userProfile.user.name}</h4>
-              <h6>{userProfile.user.email}</h6>
-              <div className='info-tab'>
-                <h6>{userProfile.posts.length} Posts</h6>
-                <h6>{userProfile.user.followers.length} Followers</h6>
-                <h6>{userProfile.user.following.length} Following</h6>
-              </div>
+              <ProfileDetails user={userProfile.user} posts={userProfile.posts} />
               {showFollow ? <Button text="FOLLOW" onClick={followUser} /> : <Button text="UN FOLLOW" onClick={unFollowUser} />}
             </div>
           </div>
