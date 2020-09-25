@@ -7,6 +7,7 @@ import Profile from './screens/Profile';
 import CreatePost from './screens/CreatePost';
 import UserProfile from './screens/UserProfile';
 import FollowingPosts from './screens/FollowingPosts';
+import Comments from './screens/Comments';
 import { UserContext } from '../App.js';
 
 const Routing = () => {
@@ -44,6 +45,9 @@ const Routing = () => {
       </Route>
       <Route path='/followingPosts'>
         <FollowingPosts />
+      </Route>
+      <Route path='/allComments/:postId'>
+        <Comments />
       </Route>
     </Switch>
   );

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import InputBar from '../InputBar';
 import Button from '../Button';
 import ImageUpload from '../ImageUpload';
 import uploadPic from '../uploadPic';
@@ -38,9 +37,9 @@ const Signup = (props) => {
     <div className="basic-card">
       <div className="card auth-card input-field">
         <h2>Instagram</h2>
-        <InputBar type='text' placeholder='name' value={name} onChange={setName} />
-        <InputBar type='text' placeholder='email' value={email} onChange={setEmail} />
-        <InputBar type='password' placeholder='password' value={password} onChange={setPassword} />
+        <input type='text' placeholder='name' value={name} onChange={(e) => setName(e.target.value)} />
+        <input type='text' placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input type='text' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
         <ImageUpload text='UPLOAD PROFILE' onClick={setImage} />
         <Button text="SIGNUP" onClick={handleSignup} />
         <h5>

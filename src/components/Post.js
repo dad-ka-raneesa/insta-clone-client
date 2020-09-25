@@ -1,18 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../App';
+import FormWithInputField from './FormWithInputField';
 
 const Post = (props) => {
   const { item, likePost, unLikePost, makeComment, deletePost } = props;
   const { state, dispatch } = useContext(UserContext);
 
-  const getComments = () => {
-    return item.comments.map((record, index) => (
-      <h6 key={record.text + index}>
-        <span className='postedBy'>{record.postedBy.name}</span>
-        {record.text}</h6 >
-    ))
-  }
+  const addComment = (value) => makeComment(value, item._id);
 
   return (
     <div className='card home-card'>
@@ -24,21 +19,17 @@ const Post = (props) => {
         <img src={item.photo} alt='Loading..' />
       </div>
       <div className='card-content'>
-        <i className="material-icons favorite"> favorite</i>
-        {item.likes.includes(state._id) ?
-          <i className="material-icons thumb_btn" onClick={() => unLikePost(item._id)}>thumb_down</i> :
-          <i className="material-icons thumb_btn" onClick={() => likePost(item._id)}>thumb_up</i>
-        }
+        <div className='bar'>
+          {item.likes.includes(state._id) ?
+            <i className="material-icons thumb_btn" onClick={() => unLikePost(item._id)}>thumb_down</i> :
+            <i className="material-icons thumb_btn" onClick={() => likePost(item._id)}>thumb_up</i>
+          }
+          <span><Link to={'/allComments/' + item._id}>Comments</Link></span>
+        </div>
         <h6>{item.likes.length} likes</h6>
         <h6>{item.title}</h6>
         <p>{item.body}</p>
-        {getComments()}
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          makeComment(e.target[0].value, item._id);
-        }}>
-          <input type='text' placeholder='add a comment'></input>
-        </form>
+        <FormWithInputField onSubmit={addComment} />
       </div>
     </div >
   );

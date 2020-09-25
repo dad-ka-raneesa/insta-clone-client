@@ -20,7 +20,11 @@ const Posts = (props) => {
 
   const likePost = (id) => postDetails({ type: 'LIKE', body: { postId: id } });
   const unLikePost = (id) => postDetails({ type: 'UN_LIKE', body: { postId: id } });
-  const makeComment = (text, id) => postDetails({ type: 'COMMENT', body: { text, postId: id } });
+  const makeComment = (text, id) => {
+    const headers = { "Authorization": "Bearer " + localStorage.getItem("jwt") };
+    postDetails({ type: 'COMMENT', body: { text, postId: id } });
+    apiCall({ type: 'ALL_COMMENTS', postId: id, headers });
+  };
   const deletePost = async (id) => {
     const headers = { "Authorization": "Bearer " + localStorage.getItem("jwt") };
     const result = await apiCall({ type: 'DELETE_POST', postId: id, headers });

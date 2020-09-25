@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
-import InputBar from '../InputBar';
 import Button from '../Button';
 import apiCall from '../apiCall';
 import M from 'materialize-css';
@@ -15,7 +14,7 @@ const Signin = (props) => {
   const handleSignin = async () => {
     const action = { type: 'SIGNIN', body: { email, password } };
     const data = await apiCall(action);
-    
+
     if (data.error) {
       M.toast({ html: data.error, classes: '#e64a19 deep-orange darken-2' });
     }
@@ -32,8 +31,8 @@ const Signin = (props) => {
     <div className="basic-card">
       <div className="card auth-card input-field">
         <h2>Instagram</h2>
-        <InputBar type='text' placeholder='email' value={email} onChange={setEmail} />
-        <InputBar type='password' placeholder='password' value={password} onChange={setPassword} />
+        <input type='text' placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input type='text' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
         <Button text="SIGNIN" onClick={handleSignin} />
         <h5>
           <Link to='/signup'>Dont have an account ?</Link>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import InputBar from '../InputBar';
 import postData from '../postData';
 import ImageUpload from '../ImageUpload';
 import uploadImage from '../uploadPic';
@@ -28,8 +27,8 @@ const CreatePost = () => {
 
   return (
     <div className='card input-field create-post-card'>
-      <InputBar type='text' placeholder='title' value={title} onChange={setTitle} />
-      <InputBar type='text' placeholder='body' value={body} onChange={setBody} />
+      <input type='text' placeholder='title' value={title} onChange={(e) => setTitle(e.target.value)} />
+      <input type='text' placeholder='body' value={body} onChange={(e) => setBody(e.target.value)} />
       <ImageUpload text='UPLOAD IMAGE' onChange={setImage} />
       <Button text="SUBMIT POST" onClick={handleCreatePost} />
     </div>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../App';
 import Gallery from '../Gallery';
-import ProfileDetails from '../ProfileDetails'
+import ProfileDetails from '../ProfileDetails';
+import Button from '../Button';
 import apiCall from '../apiCall';
 
 const Profile = () => {
@@ -21,12 +22,15 @@ const Profile = () => {
       {state ?
         <div className='profile'>
           <div className='profile-container'>
-            <div>
-              <img src={state.image} alt='profile' />
+            <div className='profile-details'>
+              <div>
+                <img src={state.image} alt='profile' />
+              </div>
+              <div>
+                <ProfileDetails user={state} posts={data} />
+              </div>
             </div>
-            <div>
-              <ProfileDetails user={state} posts={data} />
-            </div>
+            <Button text='UPDATE PROFILE'/>
           </div>
           <Gallery posts={data} />
         </div>

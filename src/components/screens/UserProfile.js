@@ -54,7 +54,7 @@ const UserProfile = () => {
     <>
       {userProfile ?
         <div className='profile'>
-          <div className='profile-container'>
+          <div className='user-profile'>
             <div>
               <img src={userProfile.user.image} alt='profile' />
             </div>
