@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
 import Button from '../Button';
 import apiCall from '../apiCall';
@@ -32,10 +32,10 @@ const Signin = (props) => {
       <div className="card auth-card input-field">
         <h2>Instagram</h2>
         <input type='text' placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type='text' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input type='password' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
         <Button text="SIGNIN" onClick={handleSignin} />
         <h5>
-          <Link to='/signup'>Dont have an account ?</Link>
+          <NavLink activeClassName='active' to='/signup'>Dont have an account ?</NavLink>
         </h5>
       </div>
     </div>

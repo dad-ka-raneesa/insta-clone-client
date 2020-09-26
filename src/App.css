@@ -22,7 +22,8 @@ h2 {
 
 .input-field input[type='text']:focus,
 .input-field input[type='password']:focus,
-input[type='text']:focus {
+input[type='text']:focus,
+input[type='password']:focus {
 	border-bottom: 1px solid rgb(95, 187, 248) !important;
 	box-shadow: 0 1px 0 0 rgb(95, 187, 248) !important;
 }
@@ -146,4 +147,9 @@ input[type='text']:focus {
 
 .comments form {
 	margin: 10px;
+}
+
+.active {
+	color: black !important;
+	font-weight: 800 !important;
 }

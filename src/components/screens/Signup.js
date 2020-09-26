@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import Button from '../Button';
 import ImageUpload from '../ImageUpload';
 import uploadPic from '../uploadPic';
@@ -39,11 +39,11 @@ const Signup = (props) => {
         <h2>Instagram</h2>
         <input type='text' placeholder='name' value={name} onChange={(e) => setName(e.target.value)} />
         <input type='text' placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type='text' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input type='password' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)} />
         <ImageUpload text='UPLOAD PROFILE' onClick={setImage} />
         <Button text="SIGNUP" onClick={handleSignup} />
         <h5>
-          <Link to='/signin'>Already have an account ?</Link>
+          <NavLink activeClassName='active' to='/signin'>Already have an account ?</NavLink>
         </h5>
       </div>
     </div>
